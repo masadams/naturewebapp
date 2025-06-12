@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Self-Guided Tour</h1>
+<div class="row">
+  {% for sp in species %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100">
+      <img src="{{ sp.image if sp.image.startswith('http') else url_for('static', filename=sp.image) }}" class="card-img-top" alt="{{ sp.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ sp.name }}</h5>
+        <p class="card-text">{{ sp.description }}</p>
+        <a href="/species/{{ sp.id }}" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
